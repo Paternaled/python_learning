@@ -1,0 +1,17 @@
+def area_sum(rectangles):
+    """
+    Calculates the total combined area of a list of rectangles.
+    Each rectangle is represented as a dictionary with 'height' and 'width'.
+    """
+    area_sum = 0
+    for i in range(0, len(rectangles)):
+        area = rectangles[i]["height"] * rectangles[i]["width"]
+        area_sum += area
+    return area_sum
+
+# Test Case
+my_rectangles = [
+    {"height": 5, "width": 10},  # Area: 50
+    {"height": 2, "width": 4}    # Area: 8
+]
+print(area_sum(my_rectangles))  # Should print: 58
