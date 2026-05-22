@@ -1,3 +1,15 @@
+def universal_zero_guard(any_function):
+    """
+    An outer setup function that runs once at load-time to wrap target functions.
+    """
+    def wrapper(*args, **kwargs):
+        # This inner function executes at runtime, capturing and checking live data
+        if 0 in args or 0 in kwargs.values():
+            print("Universal Security Notice: Operation blocked. Cannot divide by zero.")
+            return []
+        return any_function(*args, **kwargs)
+    return wrapper
+
 def area_sum(rectangles):
     """
     Calculates the total combined area of a list of rectangles.
@@ -28,7 +40,6 @@ def factorial(num):
         result *= i
     return result
 
-
 def remove_nonints(nums):
     """
     Takes a list and returns a new list with all non-integer types removed.
@@ -47,6 +58,17 @@ def number_sum(n):
     for i in range(0, n + 1):
         count += i
     return count
+
+@universal_zero_guard
+def divide_list(nums, divisor):
+    """
+    Takes a list of numbers and divides each element by the divisor.
+    Protected against ZeroDivisionError via the @universal_zero_guard decorator.
+    """
+    divided_list = []
+    for num in nums:
+        divided_list.append(num / divisor)
+    return divided_list
 
 # ==========================================
 # TEST CASES
@@ -72,4 +94,9 @@ print("Cleaned Integers:", remove_nonints(mixed_list))  # Should print: [1, 4, 5
 
 # 5. Testing number_sum
 print("Sum of numbers up to 5:", number_sum(5))  # Should print: 15 (1+2+3+4+5)
+
+# 6. Testing divide_list
+numbers_to_divide = [10, 20, 30, 45]
+print("Divided by 5:", divide_list(numbers_to_divide, 5))  # Should print: [2.0, 4.0, 6.0, 9.0]
+print("Divided by 0:", divide_list(numbers_to_divide, 0))  # Should print security warning and: []
 
