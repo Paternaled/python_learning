@@ -242,6 +242,22 @@ def find_missing_ids(first_ids, second_ids):
     
     return set_one - set_two
 
+# [15] Explicit Exception Handling
+def get_player_record(player_id):
+    """
+    Queries database records for a target player ID.
+    Raises an explicit IndexError if the requested identifier does not exist.
+    """
+    if player_id == 1:
+        return {"name": "Slayer", "level": 128}
+    if player_id == 2:
+        return {"name": "Dorgoth", "level": 300}
+    if player_id == 3:
+        return {"name": "Saruman", "level": 4000}
+        
+    # If we get here, the ID is invalid. We explicitly raise an error!
+    raise IndexError(f"Player ID {player_id} not found in database records.")
+    
 # ==========================================
 # TEST CASES
 # ==========================================
@@ -330,3 +346,15 @@ user_ids_list_b = [102, 104, 106]
 missing_from_b = find_missing_ids(user_ids_list_a, user_ids_list_b)
 print("Missing Unique IDs:", missing_from_b)  
 # Should print: {101, 103, 105}
+
+# [15] Testing Explicit Exception Handling
+print("Fetching existing profile records:")
+try: 
+    print(get_player_record(1))
+    print(get_player_record(2))
+    print(get_player_record(3))
+    
+    print("\nAttempting to fetch missing profile record:")
+    print(get_player_record(4)) # This will trigger our IndexError
+except IndexError as error_message:
+    print(f"Captured Graceful Recovery: {error_message}")
