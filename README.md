@@ -28,4 +28,5 @@ Welcome to my repository tracking my transition from core logic building to job-
 | `find_missing_ids` | High-Efficiency Set Difference | Utilizing set subtraction (`-`) to perform instant sequence exclusions in a single line of code, ensuring unique outputs while avoiding nested loop dependencies. |
 | `get_player_record` | Defensive Programming | Rejecting "bare except" habits by explicitly raising targeted system errors (`raise IndexError`) and catching them specifically (`except IndexError as error`) to prevent silent failures. |
 | `poke_api.py` | Nested Data Parsing | Accessing deep dictionary pathways like `element['type']['name']`. |
+| `.json()` Method | Data Serialization | Translating raw text strings from the web into manipulable Python dictionaries. |ys like `element['type']['name']`. |
 | `.json()` Method | Data Serialization | Translating raw text strings from the web into manipulable Python dictionaries. |
