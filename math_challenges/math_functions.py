@@ -1,5 +1,5 @@
 # ==========================================
-# CORE FUNCTIONS & DECORATORS
+# CORE LOGIC & ALGORITHMS
 # ==========================================
 
 # [Decorator Setup]
@@ -184,6 +184,54 @@ def calculate_dps(damage, time):
     print("=====================================")
 
 
+# [11] Recipe Cross-Matching
+def check_ingredient_match(recipe, inventory):
+    """
+    Compares inventory sequences against a master recipe list.
+    Returns the percentage met and an isolated sequence of missing requirements.
+    """
+    missing_ingredients = []
+    matched_count = 0
+    
+    for ingredient in recipe:
+        if ingredient in inventory:
+            matched_count += 1
+        else:
+            missing_ingredients.append(ingredient)
+            
+    match_percentage = (matched_count / len(recipe)) * 100
+    
+    return match_percentage, missing_ingredients
+
+
+# [12] Max Value Map Parsing
+def get_most_common_enemy(enemies_dict):
+    """
+    Scans key-value dictionary records to calculate the maximum occurring flag.
+    Returns the associated string identifier, tracking against negative infinity baseline.
+    """
+    if not enemies_dict:
+        return None
+        
+    max_so_far = float("-inf")
+    most_common = None
+    
+    for enemy_name, count in enemies_dict.items():
+        if count > max_so_far:
+            max_so_far = count
+            most_common = enemy_name
+            
+    return most_common
+
+
+# [13] Nested Key Pathway Resolution
+def get_quest_status(progress_dict):
+    """
+    Resolves fixed data pathways within deep nested dictionary objects without loops.
+    """
+    return progress_dict["quests"]["bridge_run"]["status"]
+
+
 # ==========================================
 # TEST CASES
 # ==========================================
@@ -230,13 +278,37 @@ converted_data = binary_string_to_int("100", "101", "110")
 print("Binary Conversion Results:", converted_data)  # Should print: (4, 5, 6)
 
 # [9] Testing Guild Permissions Engine
-# Combine individual member permissions (e.g., combining 0b1000 and 0b0001)
 master_perms = calculate_guild_perms(0b1000, 0b0100, 0b0000, 0b0001)
-print("Master Permission Superset:", bin(master_perms))  # Prints the combined binary flags
+print("Master Permission Superset:", bin(master_perms))  
 print("Check Create Permission:", bin(get_create_bits(master_perms)))
 print("Check Delete Permission:", bin(get_delete_bits(master_perms)))
 
 # [10] Testing Numeric Delimiter Handling
 print("Running DPS Calculations:")
 calculate_dps(8_000_000, 45)
+calculate_dps(10_000_000, 49)
+
+# [11] Testing Recipe Cross-Matching
+required_recipe = ["Dragon Scale", "Unicorn Hair", "Phoenix Feather", "Troll Tusk"]
+current_inventory = ["Dragon Scale", "Phoenix Feather", "Troll Tusk"]
+percentage, missing = check_ingredient_match(required_recipe, current_inventory)
+print(f"Recipe Progress: {percentage}% | Missing items: {missing}")
+
+# [12] Testing Max Value Map Parsing
+active_enemies = {"jackal": 1, "kobold": 2, "soldier": 3, "gremlin": 5}
+print("Most Dangerous Common Enemy:", get_most_common_enemy(active_enemies))
+
+# [13] Testing Nested Key Pathway Resolution
+player_progress = {
+    "character_name": "Kaladin",
+    "quests": {
+        "bridge_run": {
+            "status": "In Progress",
+        },
+        "talk_to_syl": {
+            "status": "Completed",
+        },
+    },
+}
+print("Bridge Run Current Status:", get_quest_status(player_progress))
 calculate_dps(10_000_000, 49)
