@@ -121,6 +121,69 @@ def filter_messages(messages):
     return filtered_messages, dang_count
 
 
+# [8] Binary String Conversion
+def binary_string_to_int(num_servers, num_players, num_admins):
+    """
+    Parses multiple binary string inputs and converts them to base-10 integers.
+    """
+    server_count = int(num_servers, 2)
+    player_count = int(num_players, 2)
+    admin_count = int(num_admins, 2)
+    
+    return server_count, player_count, admin_count
+
+
+# [9] Guild Permissions Engine
+can_create_guild = 0b1000
+can_review_guild = 0b0100
+can_delete_guild = 0b0010
+can_edit_guild = 0b0001
+
+def calculate_guild_perms(glorfindel, galadriel, elendil, elrond):
+    """
+    Combines individual member permission bits into a single master guild superset using bitwise OR.
+    """
+    return glorfindel | galadriel | elendil | elrond
+
+
+def get_create_bits(user_permissions):
+    """
+    Isolates creation permission bits using a bitwise AND mask.
+    """
+    return user_permissions & can_create_guild
+
+
+def get_review_bits(user_permissions):
+    """
+    Isolates review permission bits using a bitwise AND mask.
+    """
+    return user_permissions & can_review_guild
+
+
+def get_delete_bits(user_permissions):
+    """
+    Isolates deletion permission bits using a bitwise AND mask.
+    """
+    return user_permissions & can_delete_guild
+
+
+def get_edit_bits(user_permissions):
+    """
+    Isolates editing permission bits using a bitwise AND mask.
+    """
+    return user_permissions & can_edit_guild
+
+
+# [10] Numeric Delimiter Handling
+def calculate_dps(damage, time):
+    """
+    Calculates damage per second using clean numeric assignment metrics.
+    """
+    dps = damage / time
+    print(f"Damage per second: {dps}")
+    print("=====================================")
+
+
 # ==========================================
 # TEST CASES
 # ==========================================
@@ -161,3 +224,19 @@ chat_logs = [
 clean_chats, telemetry = filter_messages(chat_logs)
 print("Filtered Chats:", clean_chats)
 print("Profanity Counts:", telemetry)
+
+# [8] Testing binary_string_to_int
+converted_data = binary_string_to_int("100", "101", "110")
+print("Binary Conversion Results:", converted_data)  # Should print: (4, 5, 6)
+
+# [9] Testing Guild Permissions Engine
+# Combine individual member permissions (e.g., combining 0b1000 and 0b0001)
+master_perms = calculate_guild_perms(0b1000, 0b0100, 0b0000, 0b0001)
+print("Master Permission Superset:", bin(master_perms))  # Prints the combined binary flags
+print("Check Create Permission:", bin(get_create_bits(master_perms)))
+print("Check Delete Permission:", bin(get_delete_bits(master_perms)))
+
+# [10] Testing Numeric Delimiter Handling
+print("Running DPS Calculations:")
+calculate_dps(8_000_000, 45)
+calculate_dps(10_000_000, 49)
