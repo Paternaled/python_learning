@@ -5,7 +5,7 @@ Welcome to my repository tracking my transition from core logic building to job-
 ## 📁 Repository Contents
 
 * **[Habit Tracker](https://github.com/Paternaled/python_learning/tree/main/habit_tracker):** An XP/RPG-style gamified terminal tool practicing persistent data saving, data loops, and streak logic.
-* **[Core Logic & Architecture Challenges](https://github.com/Paternaled/python_learning/blob/main/core_logic_and_algorithms/core_logic.py):** A unified suite of functions focusing on algorithmic loops, mathematical structures, set operations, bitwise access management, and intermediate exception handling.
+* **[Core Logic & Architecture Challenges](https://github.com/Paternaled/python_learning/blob/main/core_logic_and_algorithms/core-logic.py):** A unified suite of functions focusing on algorithmic loops, mathematical structures, set operations, bitwise access management, and intermediate exception handling.
 * **[PokéAPI Program](https://github.com/Paternaled/python_learning/blob/main/PokeAPI.py):** Practice with HTTP requests, handling status codes, and parsing nested JSON data.
 
 ## 🧠 Mastered Concepts & Breakthroughs
