@@ -230,7 +230,17 @@ def get_quest_status(progress_dict):
     Resolves fixed data pathways within deep nested dictionary objects without loops.
     """
     return progress_dict["quests"]["bridge_run"]["status"]
-
+    
+# [14] High-Efficiency Set Difference Check
+def find_missing_ids(first_ids, second_ids):
+    """
+    Performs high-efficiency sequence exclusions using set mathematical differences.
+    Filters out duplicate results instantly via the set data structure.
+    """
+    set_one = set(first_ids)
+    set_two = set(second_ids)
+    
+    return set_one - set_two
 
 # ==========================================
 # TEST CASES
@@ -312,3 +322,11 @@ player_progress = {
 }
 print("Bridge Run Current Status:", get_quest_status(player_progress))
 calculate_dps(10_000_000, 49)
+
+# [14] Testing High-Efficiency Set Difference Check
+user_ids_list_a = [101, 102, 103, 104, 105, 101, 102]  # Note the duplicate 101 and 102
+user_ids_list_b = [102, 104, 106]
+
+missing_from_b = find_missing_ids(user_ids_list_a, user_ids_list_b)
+print("Missing Unique IDs:", missing_from_b)  
+# Should print: {101, 103, 105}
