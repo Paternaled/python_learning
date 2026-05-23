@@ -29,4 +29,3 @@ Welcome to my repository tracking my transition from core logic building to job-
 | `get_player_record` | Defensive Programming | Rejecting "bare except" habits by explicitly raising targeted system errors (`raise IndexError`) and catching them specifically (`except IndexError as error`) to prevent silent failures. |
 | `poke_api.py` | Nested Data Parsing | Accessing deep dictionary pathways like `element['type']['name']`. |
 | `.json()` Method | Data Serialization | Translating raw text strings from the web into manipulable Python dictionaries. |ys like `element['type']['name']`. |
-| `.json()` Method | Data Serialization | Translating raw text strings from the web into manipulable Python dictionaries. |
